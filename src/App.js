@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./styles/app.scss";
+import Header from "./components/Header";
+import Home from "./pages/Home";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+	const [items, setItems] = React.useState([]);
+
+	const [isLoading, setIsLoading] = React.useState(true);
+
+	React.useEffect(() => {
+	  fetch("https://631588185b85ba9b11e17d37.mockapi.io/items")
+	  .then((res)=>{return res.json()})
+	  .then((json) =>{
+		setItems(json);
+		setIsLoading(false);
+	  })
+	
+	  
+	}, [])
+	
+	return (
+		<div className="App">
+			<div class="wrapper">
+				<Header />
+				<Home items = {items} isLoading={isLoading}/>
+			</div>
+		</div>
+	);
 }
 
 export default App;
