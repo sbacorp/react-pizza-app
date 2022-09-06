@@ -1,30 +1,31 @@
 import React from "react";
+
+import { Routes, Route } from "react-router-dom";
 import "./styles/app.scss";
 import Header from "./components/Header";
 import Home from "./pages/Home";
+import Cart from "./pages/Cart";
+import NotFound from "./pages/NotFound";
 
 function App() {
-
-	const [items, setItems] = React.useState([]);
-
-	const [isLoading, setIsLoading] = React.useState(true);
-
-	React.useEffect(() => {
-	  fetch("https://631588185b85ba9b11e17d37.mockapi.io/items")
-	  .then((res)=>{return res.json()})
-	  .then((json) =>{
-		setItems(json);
-		setIsLoading(false);
-	  })
-	
-	  
-	}, [])
-	
+	const [cardItems, setCardItems] = React.useState([])
 	return (
 		<div className="App">
 			<div class="wrapper">
 				<Header />
-				<Home items = {items} isLoading={isLoading}/>
+				<div class="content">
+					<div class="container">
+						<Routes>
+							<Route path="/" element={<App />}></Route>
+							<Route index element={<Home />} />
+							<Route
+								path="cart"
+								element={<Cart cardItems={cardItems} setCardItems={setCardItems}/>}
+							></Route>
+							<Route path="*" element={<NotFound />} />
+						</Routes>
+					</div>
+				</div>
 			</div>
 		</div>
 	);

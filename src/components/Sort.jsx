@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 
-function Sort() {
+function Sort({ sort, onChangeSort }) {
 	const [popupActive, setPopupActive] = useState(false);
 
-	const sorts = ["популярности", "цене", "алфавиту"];
-	const [sortActive, setSortActive] = useState(0);
-    const selectedSort = sorts[sortActive];
+	const sortsList = [
+		{ name: "популярности", sortProp: "rating" },
+		{ name: "цене", sortProp: "price" },
+		{ name: "алфавиту", sortProp: "title" },
+	];
 	return (
 		<div class="sort">
 			<div
@@ -25,21 +27,25 @@ function Sort() {
 					/>
 				</svg>
 				<b>Сортировка по:</b>
-				<span>{selectedSort}</span>
+				<span>{sort.name}</span>
 			</div>
 			{popupActive && (
 				<div class="sort__popup">
 					<ul>
-						{sorts.map((sort, i) => (
+						{sortsList.map((obj, i) => (
 							<li
-								key={sort}
+								key={i}
 								onClick={() => {
-									setSortActive(i);
+									onChangeSort(obj);
 									setPopupActive(false);
 								}}
-								className={sortActive === i ? "active" : ""}
+								className={
+									sort.sortProp === obj.sortProp
+										? "active"
+										: ""
+								}
 							>
-								{sort}
+								{obj.name}
 							</li>
 						))}
 					</ul>

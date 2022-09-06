@@ -1,8 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-export default function Cart() {
+export default function Cart({cardItems,setCardItems}) {
   return (
-		<div class="content">
+		
 			<div class="container container--cart">
 				<div class="cart">
 					<div class="cart__top">
@@ -168,8 +169,8 @@ export default function Cart() {
 							</span>
 						</div>
 						<div class="cart__bottom-buttons">
-							<a
-								href="/"
+							<Link
+								to="/"
 								class="button button--outline button--add go-back-btn"
 							>
 								<svg
@@ -189,7 +190,7 @@ export default function Cart() {
 								</svg>
 
 								<span>Вернуться назад</span>
-							</a>
+							</Link>
 							<div class="button pay-btn">
 								<span>Оплатить сейчас</span>
 							</div>
@@ -197,6 +198,5 @@ export default function Cart() {
 					</div>
 				</div>
 			</div>
-		</div>
   );
 }
