@@ -4,15 +4,14 @@ import Sort from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 
-export default function Home() {
+export default function Home({ searchValue }) {
 	const [isLoading, setIsLoading] = React.useState(true);
 	const [items, setItems] = React.useState([]);
 	const [activeCategory, setActiveCategory] = React.useState(0);
 	const [sort, setSort] = React.useState({
-		name:'популярности',
-		sortProp:'rating'
+		name: "популярности",
+		sortProp: "rating",
 	});
-	
 
 	React.useEffect(() => {
 		setIsLoading(true);
@@ -28,7 +27,17 @@ export default function Home() {
 				setItems(json);
 				setIsLoading(false);
 			});
-	}, [activeCategory,sort]);
+	}, [activeCategory, sort]);
+
+	const pizzas = items
+		.filter((obj) => {
+			if (obj.title.toLowerCase().includes(searchValue.toLowerCase())) {
+				return true;
+			}
+			return false;
+		})
+		.map((item) => <PizzaBlock key={item.id} {...item} />);
+
 	return (
 		<>
 			<div class="content__top">
@@ -44,9 +53,7 @@ export default function Home() {
 					? [...new Array(6)].map((_, index) => (
 							<Skeleton key={index} />
 					  ))
-					: items.map((pizza) => (
-							<PizzaBlock key={pizza.id} {...pizza} />
-					  ))}
+					: pizzas}
 			</div>
 		</>
 	);
