@@ -7,37 +7,38 @@ import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import Pagination from "../components/Pagination";
 import { SearchContext } from "../App";
-import { setCategory } from "../redux/slices/FilterSlice";
+import { setCategory, setCurrentPage } from "../redux/slices/FilterSlice";
 
 export default function Home() {
 	const dispatch = useDispatch();
 
-	const categoryID = useSelector((state) => state.filter.categoryID);
-	const sortProp = useSelector((state) => state.filter.sort.sortProp);
+	const {categoryID, sortProp, currentPage,} = useSelector(
+		(state) => state.filter
+	);
+	const { searchValue } = React.useContext(SearchContext);
+	const [isLoading, setIsLoading] = React.useState(true);
+	const [items, setItems] = React.useState([]);
+
 	const onChangeCategory = (id) => {
 		dispatch(setCategory(id));
 	};
-
-	const { searchValue } = React.useContext(SearchContext);
-
-	const [isLoading, setIsLoading] = React.useState(true);
-	const [items, setItems] = React.useState([]);
-	const [currentPage, setCurrentPage] = React.useState(1);
-
+	const onChangePage = (number) => {
+		dispatch(setCurrentPage(number));
+	};
 	React.useEffect(() => {
 		setIsLoading(true);
 		axios
 			.get(
-				`https://631588185b85ba9b11e17d37.mockapi.io/items?page=${currentPage}&limit=6&${
+				`https://631588185b85ba9b11e17d37.mockapi.io/items?page=${currentPage}&limit=4&${
 					categoryID > 0 ? `category=${categoryID}` : ""
-				}&sortBy=${sortProp}&order=asc`
+				}&sortBy=${sortProp}&search=${searchValue}`
 			)
 			.then((res) => {
 				console.log(res);
 				setItems(res.data);
 				setIsLoading(false);
-			})
-	}, [categoryID, sortProp, currentPage]);
+			});
+	}, [categoryID, sortProp, currentPage, searchValue]);
 
 	const pizzas = items
 		.filter((obj) => {
@@ -47,6 +48,8 @@ export default function Home() {
 			return false;
 		})
 		.map((item) => <PizzaBlock key={item.id} {...item} />);
+
+	
 
 	return (
 		<>
@@ -65,10 +68,7 @@ export default function Home() {
 					  ))
 					: pizzas}
 			</div>
-			<Pagination
-				items={items}
-				onChangePage={(number) => setCurrentPage(number)}
-			/>
+			<Pagination onChangePage={(number) => onChangePage(number)} />
 		</>
 	);
 }
