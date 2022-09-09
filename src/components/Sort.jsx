@@ -1,6 +1,19 @@
 import React, { useState } from "react";
+import {useSelector, useDispatch} from 'react-redux'
+import { setSort } from "../redux/slices/FilterSlice";
+function Sort() {
 
-function Sort({ sort, onChangeSort }) {
+
+	const dispath = useDispatch();
+	const sort = useSelector((state) => state.filter.sort)
+
+
+	const onChangeSort = (obj) =>{
+		dispath(setSort(obj));
+	}
+
+
+
 	const [popupActive, setPopupActive] = useState(false);
 
 	const sortsList = [
@@ -9,10 +22,10 @@ function Sort({ sort, onChangeSort }) {
 		{ name: "алфавиту", sortProp: "title" },
 	];
 	return (
-		<div class="sort">
+		<div className="sort">
 			<div
 				onClick={() => setPopupActive(!popupActive)}
-				class="sort__label"
+				className="sort__label"
 			>
 				<svg
 					width="10"

@@ -3,16 +3,19 @@
 .header {
   border-bottom: 1px solid $gray-line;
   padding: 40px 0;
+  
 
   .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
 
   &__logo {
+    
     display: flex;
-
+   
     img {
       margin-right: 15px;
     }
@@ -28,5 +31,8 @@
     p {
       color: #7b7b7b;
     }
+  }
+  &__cart {
+    justify-self: flex-end;
   }
 }
