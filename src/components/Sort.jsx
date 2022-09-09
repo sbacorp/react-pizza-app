@@ -43,7 +43,7 @@ function Sort() {
 				<span>{sort.name}</span>
 			</div>
 			{popupActive && (
-				<div class="sort__popup">
+				<div className="sort__popup">
 					<ul>
 						{sortsList.map((obj, i) => (
 							<li

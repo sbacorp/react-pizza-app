@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { second as third } from 'axios'
+import axios from "axios";
 import Categories from "../components/Categories";
 import Sort from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";
@@ -23,23 +23,21 @@ export default function Home() {
 	const [isLoading, setIsLoading] = React.useState(true);
 	const [items, setItems] = React.useState([]);
 	const [currentPage, setCurrentPage] = React.useState(1);
-	
 
 	React.useEffect(() => {
 		setIsLoading(true);
-		fetch(
-			`https://631588185b85ba9b11e17d37.mockapi.io/items?page=${currentPage}&limit=6&${
-				categoryID > 0 ? `category=${categoryID}` : ""
-			}&sortBy=${sortProp}&order=asc`
-		)
+		axios
+			.get(
+				`https://631588185b85ba9b11e17d37.mockapi.io/items?page=${currentPage}&limit=6&${
+					categoryID > 0 ? `category=${categoryID}` : ""
+				}&sortBy=${sortProp}&order=asc`
+			)
 			.then((res) => {
-				return res.json();
-			})
-			.then((json) => {
-				setItems(json);
+				console.log(res);
+				setItems(res.data);
 				setIsLoading(false);
-			});
-	}, [categoryID,sortProp, currentPage]);
+			})
+	}, [categoryID, sortProp, currentPage]);
 
 	const pizzas = items
 		.filter((obj) => {
@@ -57,7 +55,7 @@ export default function Home() {
 					categoryID={categoryID}
 					onChangeCategory={onChangeCategory}
 				/>
-				<Sort  />
+				<Sort />
 			</div>
 			<h2 className="content__title">Все пиццы</h2>
 			<div className="content__items">
