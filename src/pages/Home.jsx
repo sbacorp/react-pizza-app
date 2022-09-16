@@ -53,6 +53,7 @@ export default function Home() {
 		}
 		isQuery.current = false;
 	}, [categoryID, sort.sortProp, currentPage, searchValue]);
+
 	React.useEffect(() => {
 		if (window.location.search) {
 			const searchParams = qs.parse(window.location.search.substring(1));
@@ -66,15 +67,15 @@ export default function Home() {
 	}, []);
 
 	React.useEffect(() => {
-		if(isMounted){
-		const queryString = qs.stringify({
-			currentPage,
-			sortProp: sort.sortProp,
-			categoryID,
-		});
-		navigate(`?${queryString}`);
-	}
-	isMounted.current = true;
+		if (isMounted) {
+			const queryString = qs.stringify({
+				currentPage,
+				sortProp: sort.sortProp,
+				categoryID,
+			});
+			navigate(`?${queryString}`);
+		}
+		isMounted.current = true;
 	}, [categoryID, sort.sortProp, currentPage, searchValue]);
 
 	const pizzas = items
