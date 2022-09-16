@@ -1,32 +1,43 @@
 import React, { useState } from "react";
-import {useSelector, useDispatch} from 'react-redux'
+import { useSelector, useDispatch } from "react-redux";
 import { setSort } from "../redux/slices/FilterSlice";
 
 export const sortsList = [
-		{ name: "популярности", sortProp: "rating" },
-		{ name: "цене", sortProp: "price" },
-		{ name: "алфавиту", sortProp: "title" },
-	];
+	{ name: "популярности", sortProp: "rating" },
+	{ name: "цене", sortProp: "price" },
+	{ name: "алфавиту", sortProp: "title" },
+];
 function Sort() {
-
-
 	const dispath = useDispatch();
-	const sort = useSelector((state) => state.filter.sort)
+	const sort = useSelector((state) => state.filter.sort);
+	const sortRef = React.useRef();
 
-
-	const onChangeSort = (obj) =>{
+	const onChangeSort = (obj) => {
 		dispath(setSort(obj));
-	}
-
-
+	};
 
 	const [popupActive, setPopupActive] = useState(false);
 
-	
+	React.useEffect(() => {
+		const handleBodyClick = (event) => {
+			if (!event.path.includes(sortRef.current)) {
+				setPopupActive(false);
+			}
+		};
+
+		document.body.addEventListener("click", handleBodyClick);
+
+		return () => {
+			document.body.removeEventListener("click", handleBodyClick);
+		};
+	}, []);
+
 	return (
-		<div className="sort">
+		<div ref={sortRef} className="sort">
 			<div
-				onClick={() => setPopupActive(!popupActive)}
+				onClick={() => {
+					setPopupActive(true);
+				}}
 				className="sort__label"
 			>
 				<svg

@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import qs from "qs";
-import axios from "axios";
 import Categories from "../components/Categories";
 import Sort, { sortsList } from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";
@@ -14,6 +13,8 @@ import {
 	setCurrentPage,
 	setFilters,
 } from "../redux/slices/FilterSlice";
+import { fetchProducts } from "../redux/slices/ProductsSlice";
+import { categoriesNames } from "../components/Categories";
 
 export default function Home() {
 	const dispatch = useDispatch();
@@ -23,9 +24,8 @@ export default function Home() {
 	const { categoryID, sort, currentPage } = useSelector(
 		(state) => state.filter
 	);
+	const { items, status } = useSelector((state) => state.products);
 	const { searchValue } = React.useContext(SearchContext);
-	const [isLoading, setIsLoading] = React.useState(true);
-	const [items, setItems] = React.useState([]);
 
 	const onChangeCategory = (id) => {
 		dispatch(setCategory(id));
@@ -33,23 +33,20 @@ export default function Home() {
 	const onChangePage = (number) => {
 		dispatch(setCurrentPage(number));
 	};
-	const fetchData = () => {
-		setIsLoading(true);
-		axios
-			.get(
-				`https://631588185b85ba9b11e17d37.mockapi.io/items?page=${currentPage}&limit=4&${
-					categoryID > 0 ? `category=${categoryID}` : ""
-				}&sortBy=${sort.sortProp}&search=${searchValue}`
-			)
-			.then((res) => {
-				setItems(res.data);
-				setIsLoading(false);
-			});
+	const getProducts = async () => {
+		try {
+			dispatch(
+				fetchProducts({ currentPage, categoryID, sort, searchValue })
+			);
+		} catch (error) {
+			console.log(error);
+		} finally {
+		}
 	};
 	React.useEffect(() => {
 		window.scrollTo(0, 0);
 		if (!isQuery.current) {
-			fetchData();
+			getProducts();
 		}
 		isQuery.current = false;
 	}, [categoryID, sort.sortProp, currentPage, searchValue]);
@@ -96,14 +93,27 @@ export default function Home() {
 				/>
 				<Sort />
 			</div>
-			<h2 className="content__title">Все пиццы</h2>
-			<div className="content__items">
-				{isLoading
-					? [...new Array(6)].map((_, index) => (
-							<Skeleton key={index} />
-					  ))
-					: pizzas}
-			</div>
+			<h2 className="content__title">
+				{categoriesNames[categoryID]} пиццы
+			</h2>
+			{status === "error" ? (
+				<div className="content__error-info">
+					<h2>Произошла ошибка 😕</h2>
+					<p>
+						К сожалению, не удалось получить питсы. Попробуйте
+						повторить попытку позже.
+					</p>
+				</div>
+			) : (
+				<div className="content__items">
+					{status === "loading"
+						? [...new Array(6)].map((_, index) => (
+								<Skeleton key={index} />
+						  ))
+						: pizzas}
+				</div>
+			)}
+
 			<Pagination onChangePage={(number) => onChangePage(number)} />
 		</>
 	);

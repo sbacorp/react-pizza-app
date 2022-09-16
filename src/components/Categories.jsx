@@ -1,18 +1,18 @@
 import React from "react";
-
-function Categories({ categoryID, onChangeCategory }) {
-	const categories = [
+export const categoriesNames = [
 		"Все",
 		"Мясные",
-		"Вегетарианская",
+		"Вегетарианские",
 		"Гриль",
 		"Острые",
 		"Закрытые",
 	];
+function Categories({ categoryID, onChangeCategory }) {
+	
 	return (
 		<div className="categories">
 			<ul>
-				{categories.map((value, i) => (
+				{categoriesNames.map((value, i) => (
 					<li
 						key={i}
 						onClick={() => onChangeCategory(i)}
