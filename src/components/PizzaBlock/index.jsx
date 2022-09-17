@@ -2,11 +2,16 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addItem } from "../../redux/slices/CartSlice";
 const TYPES = ["тонкое", "традиционное"];
-
+ const SIZES = [26, 30, 40];
 function PizzaBlock({ id, title, price, types, sizes, imageUrl }) {
 
 	const dispatch = useDispatch();
-	const cardItem = useSelector(state =>state.cart.items.find(obj => obj.id === id))
+	const cardItem = useSelector((state) =>
+		state.cart.items.find(
+			(obj) =>
+				obj.id ===id
+		)
+	);
 	const [typeActive, setTypeActive] = React.useState(0);
 	const [sizeActive, setSizeActive] = React.useState(0);
 
@@ -20,7 +25,7 @@ function PizzaBlock({ id, title, price, types, sizes, imageUrl }) {
 			price,
 			imageUrl,
 			type: TYPES[typeActive],
-			size: sizeActive,
+			size: SIZES[sizeActive],
 		};
 		dispatch(addItem(item));
 	};

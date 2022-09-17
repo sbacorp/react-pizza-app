@@ -1,19 +1,24 @@
 import React from 'react'
 import { useDispatch } from "react-redux";
-import { addItem, minusItem, removeItem } from '../redux/slices/CartSlice';
-function CartItem({id, title, price,type, count, imageUrl}) {
+import {
+	addItem,
+	minusItem,
+	removeItem,
+} from "../redux/slices/CartSlice";
+
+function CartItem({id, title, price,type,size, count, imageUrl}) {
 
 	const dispath = useDispatch();
 	const onClickPlus =() =>{
-		dispath(addItem({id,}))
+		dispath(addItem({id, size, type}));
 	}
 const onClickMinus = () => {
 	if(count>1){
-	dispath(minusItem(id ));
+	dispath(minusItem({ id, size, type }));
 	}
 };
 const onClickRemove = () =>{
-	dispath(removeItem(id));
+	dispath(removeItem({ id, size, type }));
 }
 
   return (
@@ -27,7 +32,7 @@ const onClickRemove = () =>{
 			</div>
 			<div className="cart__item-info">
 				<h3>{title}</h3>
-				<p>{type}, 26 см.</p>
+				<p>{type}, {size} см.</p>
 			</div>
 			<div className="cart__item-count">
 				<button
