@@ -7,7 +7,7 @@ import Sort, { sortsList } from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import Pagination from "../components/Pagination";
-import { SearchContext } from "../App";
+
 import {
 	setCategory,
 	setCurrentPage,
@@ -19,13 +19,11 @@ import { categoriesNames } from "../components/Categories";
 export default function Home() {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const isQuery = React.useRef(false);
-	const isMounted = React.useRef(false);
-	const { categoryID, sort, currentPage } = useSelector(
+	const { categoryID, sort, currentPage, searchValue } = useSelector(
 		(state) => state.filter
 	);
 	const { items, status } = useSelector((state) => state.products);
-	const { searchValue } = React.useContext(SearchContext);
+	
 
 	const onChangeCategory = (id) => {
 		dispatch(setCategory(id));
@@ -45,10 +43,8 @@ export default function Home() {
 	};
 	React.useEffect(() => {
 		window.scrollTo(0, 0);
-		if (!isQuery.current) {
+		
 			getProducts();
-		}
-		isQuery.current = false;
 	}, [categoryID, sort.sortProp, currentPage, searchValue]);
 
 	React.useEffect(() => {
@@ -59,29 +55,22 @@ export default function Home() {
 				(obj) => obj.sortProp === searchParams.sortProp
 			);
 			dispatch(setFilters({ ...searchParams, sort }));
-			isQuery.current = true;
+			
 		}
 	}, []);
 
 	React.useEffect(() => {
-		if (isMounted) {
+		
 			const queryString = qs.stringify({
 				currentPage,
 				sortProp: sort.sortProp,
 				categoryID,
 			});
 			navigate(`?${queryString}`);
-		}
-		isMounted.current = true;
 	}, [categoryID, sort.sortProp, currentPage, searchValue]);
 
 	const pizzas = items
-		.filter((obj) => {
-			if (obj.title.toLowerCase().includes(searchValue.toLowerCase())) {
-				return true;
-			}
-			return false;
-		})
+		.filter((obj) => obj.title.toLowerCase().includes(searchValue.toLowerCase()) ? true : false)
 		.map((item) => <PizzaBlock key={item.id} {...item} />);
 
 	return (
