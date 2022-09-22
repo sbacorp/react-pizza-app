@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import qs from "qs";
 import Categories from "../components/Categories";
 import Sort, { sortsList } from "../components/Sort";
@@ -42,10 +42,11 @@ export default function Home() {
 		}
 	};
 	React.useEffect(() => {
-		window.scrollTo(0, 0);
-		
+			window.scrollTo(0, 0);
+
 			getProducts();
-	}, [categoryID, sort.sortProp, currentPage, searchValue]);
+		},
+		[categoryID, sort.sortProp, currentPage, searchValue]);
 
 	React.useEffect(() => {
 		if (window.location.search) {
@@ -70,8 +71,8 @@ export default function Home() {
 	}, [categoryID, sort.sortProp, currentPage, searchValue]);
 
 	const pizzas = items
-		.filter((obj) => obj.title.toLowerCase().includes(searchValue.toLowerCase()) ? true : false)
-		.map((item) => <PizzaBlock key={item.id} {...item} />);
+		.filter((obj) => obj.title.toLowerCase().includes(searchValue.toLowerCase()))
+		.map((item) => <Link to={`/product/${item.id}`} key={item.id}><PizzaBlock  {...item} /></Link>);
 
 	return (
 		<>

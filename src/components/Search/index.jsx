@@ -20,7 +20,7 @@ function Seach() {
 	const updateSearch = React.useCallback(
 		debounce((value) => {
 			dispatch(setSearchValue(value));
-		}, 150),
+		}, 350),
 		[]
 	);
 
