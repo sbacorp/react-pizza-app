@@ -1,16 +1,19 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { addItem, CartItemSelector } from "../../redux/slices/CartSlice";
+import {  useDispatch } from "react-redux";
+import { addItem } from "../../redux/slices/CartSlice";
+import {Link} from "react-router-dom";
 const TYPES = ["тонкое", "традиционное"];
  const SIZES = [26, 30, 40];
 function PizzaBlock({ id, title, price, types, sizes, imageUrl }) {
 
 	const dispatch = useDispatch();
-	const cardItem = useSelector(CartItemSelector(id));
+
+
 	const [typeActive, setTypeActive] = React.useState(0);
 	const [sizeActive, setSizeActive] = React.useState(0);
 
-	const addedCount = cardItem?cardItem.count:0;
+
+
 
 
 	const onAddClick = () => {
@@ -20,14 +23,14 @@ function PizzaBlock({ id, title, price, types, sizes, imageUrl }) {
 			price,
 			imageUrl,
 			type: TYPES[typeActive],
-			size: SIZES[sizeActive],
+			size:SIZES[sizeActive]
 		};
 		dispatch(addItem(item));
 	};
 
 	return (
 		<div className="pizza-block">
-			<img className="pizza-block__image" src={imageUrl} alt="Pizza" />
+			<Link to={`/product/${id}`}><img className="pizza-block__image" src={imageUrl} alt="Pizza" /></Link>
 			<h4 className="pizza-block__title">{title}</h4>
 			<div className="pizza-block__selector">
 				<ul>
@@ -36,6 +39,7 @@ function PizzaBlock({ id, title, price, types, sizes, imageUrl }) {
 							key={i}
 							className={typeActive === type ? "active" : ""}
 							onClick={() => setTypeActive(type)}
+
 						>
 							{TYPES[type]}
 						</li>
@@ -70,9 +74,10 @@ function PizzaBlock({ id, title, price, types, sizes, imageUrl }) {
 							d="M10.8 4.8H7.2V1.2C7.2 0.5373 6.6627 0 6 0C5.3373 0 4.8 0.5373 4.8 1.2V4.8H1.2C0.5373 4.8 0 5.3373 0 6C0 6.6627 0.5373 7.2 1.2 7.2H4.8V10.8C4.8 11.4627 5.3373 12 6 12C6.6627 12 7.2 11.4627 7.2 10.8V7.2H10.8C11.4627 7.2 12 6.6627 12 6C12 5.3373 11.4627 4.8 10.8 4.8Z"
 							fill="white"
 						/>
+
 					</svg>
 					<span>Добавить</span>
-					{addedCount!==0&&<i>{addedCount}</i>}
+
 				
 				</button>
 			</div>

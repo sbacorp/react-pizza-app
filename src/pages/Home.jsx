@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import qs from "qs";
 import Categories from "../components/Categories";
 import Sort, { sortsList } from "../components/Sort";
@@ -72,7 +72,7 @@ export default function Home() {
 
 	const pizzas = items
 		.filter((obj) => obj.title.toLowerCase().includes(searchValue.toLowerCase()))
-		.map((item) => <Link to={`/product/${item.id}`} key={item.id}><PizzaBlock  {...item} /></Link>);
+		.map((item) => <PizzaBlock key={item.id} {...item} />);
 
 	return (
 		<>

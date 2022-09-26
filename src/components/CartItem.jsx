@@ -8,17 +8,17 @@ import {
 
 function CartItem({id, title, price,type,size, count, imageUrl}) {
 
-	const dispath = useDispatch();
+	const dispatch = useDispatch();
 	const onClickPlus =() =>{
-		dispath(addItem({id, size, type}));
+		dispatch(addItem({id, size, type}));
 	}
 const onClickMinus = () => {
 	if(count>1){
-	dispath(minusItem({ id, size, type }));
+	dispatch(minusItem({ id, size, type }));
 	}
 };
 const onClickRemove = () =>{
-	dispath(removeItem({ id, size, type }));
+	dispatch(removeItem({ id, size, type }));
 }
 
   return (
@@ -38,7 +38,7 @@ const onClickRemove = () =>{
 				<button
 					onClick={onClickMinus}
 					className="button button--outline button--circle cart__item-count-minus"
-					disabled={count>1?false:true}		
+					disabled={count>1}
 				>
 					<svg
 						width="10"
