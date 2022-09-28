@@ -1,27 +1,32 @@
-import React from 'react'
+import React from "react";
 import { useDispatch } from "react-redux";
-import {
-	addItem,
-	minusItem,
-	removeItem,
-} from "../redux/slices/CartSlice";
+import { addItem, minusItem, removeItem } from "../redux/slices/CartSlice";
 
-function CartItem({id, title, price,type,size, count, imageUrl}) {
-
-	const dispatch = useDispatch();
-	const onClickPlus =() =>{
-		dispatch(addItem({id, size, type}));
-	}
-const onClickMinus = () => {
-	if(count>1){
-	dispatch(minusItem({ id, size, type }));
-	}
+type Props = {
+	id: string,
+	title: string,
+	price: number,
+	type: string,
+	size: number,
+	count: number,
+	imageUrl: string,
 };
-const onClickRemove = () =>{
-	dispatch(removeItem({ id, size, type }));
-}
 
-  return (
+function CartItem({ id, title, price, type, size, count, imageUrl }: Props) {
+	const dispatch = useDispatch();
+	const onClickPlus = () => {
+		dispatch(addItem({ id, size, type }));
+	};
+	const onClickMinus = () => {
+		if (count > 1) {
+			dispatch(minusItem({ id, size, type }));
+		}
+	};
+	const onClickRemove = () => {
+		dispatch(removeItem({ id, size, type }));
+	};
+
+	return (
 		<div className="cart__item">
 			<div className="cart__item-img">
 				<img
@@ -32,13 +37,15 @@ const onClickRemove = () =>{
 			</div>
 			<div className="cart__item-info">
 				<h3>{title}</h3>
-				<p>{type}, {size} см.</p>
+				<p>
+					{type}, {size} см.
+				</p>
 			</div>
 			<div className="cart__item-count">
 				<button
 					onClick={onClickMinus}
 					className="button button--outline button--circle cart__item-count-minus"
-					disabled={count>1}
+					disabled={count > 1?false:true}
 				>
 					<svg
 						width="10"
@@ -104,7 +111,7 @@ const onClickRemove = () =>{
 				</div>
 			</div>
 		</div>
-  );
+	);
 }
 
 export default CartItem;

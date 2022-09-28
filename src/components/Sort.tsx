@@ -2,24 +2,30 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setSort } from "../redux/slices/FilterSlice";
 
-export const sortsList = [
+
+type SortItem ={
+	name: string,
+	 sortProp: string 
+};
+
+export const sortsList: SortItem[] = [
 	{ name: "популярности", sortProp: "rating" },
 	{ name: "цене", sortProp: "price" },
 	{ name: "алфавиту", sortProp: "title" },
 ];
 function Sort() {
 	const dispath = useDispatch();
-	const sort = useSelector((state) => state.filter.sort);
-	const sortRef = React.useRef();
+	const sort = useSelector((state:any) => state.filter.sort);
+	const sortRef = React.useRef<HTMLDivElement>(null);
 
-	const onChangeSort = (obj) => {
+	const onChangeSort = (obj: SortItem) => {
 		dispath(setSort(obj));
 	};
 
 	const [popupActive, setPopupActive] = useState(false);
 
 	React.useEffect(() => {
-		const handleBodyClick = (event) => {
+		const handleBodyClick = (event:any) => {
 			if (!event.path.includes(sortRef.current)) {
 				setPopupActive(false);
 			}

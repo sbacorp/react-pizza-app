@@ -4,7 +4,17 @@ import { addItem } from "../../redux/slices/CartSlice";
 import {Link} from "react-router-dom";
 const TYPES = ["тонкое", "традиционное"];
  const SIZES = [26, 30, 40];
-function PizzaBlock({ id, title, price, types, sizes, imageUrl }) {
+
+ type Props = {
+		id: string;
+		title: string;
+		price: number;
+		types: number[];
+		sizes: number[];
+		count: number;
+		imageUrl: string;
+ };
+function PizzaBlock({ id, title, price, types, sizes, imageUrl }:Props) {
 
 	const dispatch = useDispatch();
 

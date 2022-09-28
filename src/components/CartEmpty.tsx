@@ -1,7 +1,8 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import empty from '../assets/img/empty-cart.png'
-function CartEmpty() {
+
+
+export default function CartEmpty() {
   return (
 	<>
 		<div className="cart cart--empty">
@@ -19,7 +20,5 @@ function CartEmpty() {
 			</Link>
 		</div>
 		</>
-  );
+  )
 }
-
-export default CartEmpty

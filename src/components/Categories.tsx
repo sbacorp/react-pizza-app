@@ -1,4 +1,3 @@
-import React from "react";
 export const categoriesNames = [
 		"Все",
 		"Мясные",
@@ -7,8 +6,14 @@ export const categoriesNames = [
 		"Острые",
 		"Закрытые",
 	];
-function Categories({ categoryID, onChangeCategory }) {
-	
+
+type Props = {
+	categoryID: number,
+	 onChangeCategory:Function
+}
+
+export default function Categories({categoryID,onChangeCategory}: Props) {
+  
 	return (
 		<div className="categories">
 			<ul>
@@ -24,6 +29,5 @@ function Categories({ categoryID, onChangeCategory }) {
 			</ul>
 		</div>
 	);
-}
 
-export default Categories;
+}
