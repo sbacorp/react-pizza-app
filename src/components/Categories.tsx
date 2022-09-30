@@ -1,4 +1,6 @@
-export const categoriesNames = [
+import React from "react";
+
+	export const categoriesNames = [
 		"Все",
 		"Мясные",
 		"Вегетарианские",
@@ -9,11 +11,11 @@ export const categoriesNames = [
 
 type Props = {
 	categoryID: number,
-	 onChangeCategory:Function
+	 onChangeCategory:(value:number)=>void
 }
 
-export default function Categories({categoryID,onChangeCategory}: Props) {
-  
+export const Categories:React.FC<Props> = React.memo(({categoryID,onChangeCategory})=> {
+	
 	return (
 		<div className="categories">
 			<ul>
@@ -30,4 +32,5 @@ export default function Categories({categoryID,onChangeCategory}: Props) {
 		</div>
 	);
 
-}
+})
+

@@ -1,4 +1,3 @@
-import React from "react";
 import { useDispatch } from "react-redux";
 import { addItem, minusItem, removeItem } from "../redux/slices/CartSlice";
 
@@ -13,17 +12,29 @@ type Props = {
 };
 
 function CartItem({ id, title, price, type, size, count, imageUrl }: Props) {
+	const item = {
+		id,
+		title,
+		price,
+		type,
+		size,
+		count,
+		imageUrl,
+	};
 	const dispatch = useDispatch();
 	const onClickPlus = () => {
-		dispatch(addItem({ id, size, type }));
+		
+		dispatch(addItem(item));
 	};
 	const onClickMinus = () => {
 		if (count > 1) {
-			dispatch(minusItem({ id, size, type }));
+			
+			dispatch(minusItem(item));
 		}
 	};
 	const onClickRemove = () => {
-		dispatch(removeItem({ id, size, type }));
+		
+		dispatch(removeItem(item));
 	};
 
 	return (

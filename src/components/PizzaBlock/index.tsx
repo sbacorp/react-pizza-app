@@ -1,6 +1,6 @@
 import React from "react";
 import {  useDispatch } from "react-redux";
-import { addItem } from "../../redux/slices/CartSlice";
+import { addItem, CartItem } from "../../redux/slices/CartSlice";
 import {Link} from "react-router-dom";
 const TYPES = ["тонкое", "традиционное"];
  const SIZES = [26, 30, 40];
@@ -14,6 +14,7 @@ const TYPES = ["тонкое", "традиционное"];
 		count: number;
 		imageUrl: string;
  };
+
 function PizzaBlock({ id, title, price, types, sizes, imageUrl }:Props) {
 
 	const dispatch = useDispatch();
@@ -23,17 +24,18 @@ function PizzaBlock({ id, title, price, types, sizes, imageUrl }:Props) {
 	const [sizeActive, setSizeActive] = React.useState(0);
 
 
-
+	
 
 
 	const onAddClick = () => {
-		const item = {
+		const item: CartItem = {
 			id,
 			title,
 			price,
 			imageUrl,
 			type: TYPES[typeActive],
-			size:SIZES[sizeActive]
+			size: SIZES[sizeActive],
+			count:1
 		};
 		dispatch(addItem(item));
 	};
