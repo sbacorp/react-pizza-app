@@ -5,7 +5,7 @@ import styles from "./Search.module.scss";
 import { useDispatch } from "react-redux";
 import {
 	setSearchValue
-} from "../../redux/slices/FilterSlice";
+} from "../../redux/slices/filter/slice";
 
 
 function Seach() {

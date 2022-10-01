@@ -6,3 +6,12 @@ $orange: #fe5f1e;
 $container-width: 90%;
 
 $duration: 0.15s;
+:root[data-theme="light"] {
+  --background-color: #ffffff;
+  --text-color: #1C1E21;
+}
+
+:root[data-theme="dark"] {
+  --background-color: #18191a;
+  --text-color: #f5f6f7;
+}

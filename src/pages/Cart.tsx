@@ -1,24 +1,24 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import CartItem from "../components/CartItem";
-import {
-	clearItems, CartSelector
-} from "../redux/slices/CartSlice";
+import CartEmpty from "../components/CartEmpty";
+import { clearItems } from "../redux/slices/cart/slice";
+import { CartSelector } from "../redux/slices/cart/selectors";
 
-import CartEmpty from '../components/CartEmpty'
 export default function Cart() {
-	
 	const dispatch = useDispatch();
 	const { items, totalPrice } = useSelector(CartSelector);
-	
-	const totalCount = items.reduce((sum:number, item:any) => sum + item.count, 0);
 
-	const clearCart = () =>{
+	const totalCount = items.reduce(
+		(sum: number, item: any) => sum + item.count,
+		0
+	);
+
+	const clearCart = () => {
 		dispatch(clearItems());
-	}
-	if(!totalPrice){
-		return <CartEmpty/>
+	};
+	if (!totalPrice) {
+		return <CartEmpty />;
 	}
 	return (
 		<div className="container container--cart">
@@ -98,7 +98,7 @@ export default function Cart() {
 					</div>
 				</div>
 				<div className="content__items">
-					{items.map((item:any) => (
+					{items.map((item: any) => (
 						<CartItem
 							key={`${item.id} ${item.type} ${item.size}`}
 							{...item}

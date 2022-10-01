@@ -1,8 +1,7 @@
-import { CartItem } from "../redux/slices/CartSlice";
+import { CartItem } from "../redux/slices/cart/types";
+import { calcTotalPrice } from "./calcTotal";
 
-export const calcTotalPrice = (items: CartItem[]) => {
-	return items.reduce((sum, obj) => obj.price * obj.count + sum, 0);
-};
+
 
 export const loadItems = () => {
 	const data = localStorage.getItem("cart");

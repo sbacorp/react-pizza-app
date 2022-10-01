@@ -1,36 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { RootState } from "../store";
+import { ProductItem, Status, IParams, IProductSliceState } from "./types";
 
-export enum Status {
-	LOADING = "loading",
-	SUCCESS = "completed",
-	ERROR = "error",
-}
-
-interface IProductSliceState {
-	items: ProductItem[];
-	status: Status;
-}
-
-export type ProductItem = {
-	id: string;
-	title: string;
-	price: number;
-	types: number[];
-	sizes: number[];
-	count: number;
-	imageUrl: string;
-};
-interface IParams {
-	currentPage: number;
-	categoryID: number;
-	sort: {
-		name: string;
-		sortProp: string;
-	};
-	searchValue: string;
-}
 
 export const fetchProducts = createAsyncThunk<ProductItem[], IParams>(
 	"products/fetchProductsStaus",
@@ -72,7 +43,6 @@ export const productsSlice = createSlice({
 			})
 	},
 });
-export const ProductsSelector = (state: RootState) => state.products;
 export const { setItems } = productsSlice.actions;
 
 export default productsSlice.reducer;

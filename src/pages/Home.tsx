@@ -5,20 +5,16 @@ import Sort from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import Pagination from "../components/Pagination";
-
-import {
-	FilterSelector,
-	setCategory,
-	setCurrentPage,
-} from "../redux/slices/FilterSlice";
-import { fetchProducts, ProductsSelector } from "../redux/slices/ProductsSlice";
 import { categoriesNames } from "../components/Categories";
 import { useAppDispatch } from "../redux/store";
-
+import { setCategory, setCurrentPage } from "../redux/slices/filter/slice";
+import { fetchProducts } from "../redux/slices/products/slice";
+import { FilterSelector } from "../redux/slices/filter/selectors";
+import { ProductsSelector } from "../redux/slices/products/selectors";
 
 
 export const Home: React.FC = () => {
-	const isMounted= React.useRef(false)
+	const isMounted = React.useRef(false);
 	const dispatch = useAppDispatch();
 
 	const { categoryID, sort, currentPage, searchValue } =
@@ -40,14 +36,13 @@ export const Home: React.FC = () => {
 			console.log(error);
 		}
 	};
-	
-	
+
 	React.useEffect(() => {
-		if(isMounted.current){
-		window.scrollTo(0, 0);
-		getProducts();
+		if (isMounted.current) {
+			window.scrollTo(0, 0);
+			getProducts();
 		}
-		isMounted.current=true;
+		isMounted.current = true;
 	}, [categoryID, sort.sortProp, currentPage, searchValue]);
 
 	// React.useEffect(() => {

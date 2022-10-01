@@ -3,7 +3,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "../assets/img/pizza-logo.svg";
-import { CartItem, CartSelector } from "../redux/slices/CartSlice";
+import {CartSelector } from "../redux/slices/cart/selectors";
+import { CartItem } from "../redux/slices/cart/types";
 import Seach from "./Search";
 
 const Header: React.FC = ()=> {

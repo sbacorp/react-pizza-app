@@ -1,6 +1,7 @@
 import React from "react";
 import {  useDispatch } from "react-redux";
-import { addItem, CartItem } from "../../redux/slices/CartSlice";
+import { addItem } from "../../redux/slices/cart/slice";
+import { CartItem } from "../../redux/slices/cart/types";
 import {Link} from "react-router-dom";
 const TYPES = ["тонкое", "традиционное"];
  const SIZES = [26, 30, 40];

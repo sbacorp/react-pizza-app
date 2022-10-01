@@ -1,13 +1,18 @@
+
+
 @import "./variables";
 @import "./libs/normalize";
 
 @import "./components/all";
 
-body {
-	background-color: $background;
-}
 
+
+body {
+  background: var(--background-color);
+  color: var(--text-color);
+}
 .wrapper {
+	background: var(--background-color);
 	width: calc(100vw - 100px);
 	height: 100%;
 	background-color: #fff;
@@ -109,6 +114,7 @@ body {
 }
 
 .container {
+	
 	width: $container-width;
 	margin: 0 auto;
 

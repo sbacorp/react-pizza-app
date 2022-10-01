@@ -5,8 +5,9 @@ import {Home} from "./pages/Home";
 import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
 import PizzaPreview from "./pages/PizzaPreview";
+import ThemeSwitcher from "./components/Theme/ThemeSwitcher";
 
-function App() {
+function Root() {
 
 
 
@@ -14,10 +15,11 @@ function App() {
 		<div className="App">
 			<div className="wrapper">
 				<Header />
+				<ThemeSwitcher/>
 				<div className="content">
 					<div className="container">
 						<Routes>
-							<Route path="/" element={<App />}></Route>
+							<Route path="/" element={<Root />}></Route>
 							<Route index element={<Home />} />
 							<Route path="/cart" element={<Cart />}></Route>
 							<Route path="/product/:id" element={<PizzaPreview />}></Route>
@@ -29,5 +31,5 @@ function App() {
 		</div>
 	);
 }
-export default App;
+export default Root;
 
