@@ -24,6 +24,8 @@
       &.active {
         background: #ffffff;
         color: #18191a;
+        border-bottom: 1px solid #18191aaf ;
+        box-shadow: 0 5px 5px #18191a81;
       }
     }
   }
