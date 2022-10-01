@@ -12,12 +12,16 @@
       font-weight: bold;
       cursor: pointer;
       transition: background-color 0.3s ease-in-out;
-      background: var(--background-color);
-      color: var(--text-color);
+      background: $background;
+      box-shadow: 0 5px 5px #02020281;
+      color: $color;
       @include noselect();
 
       &:hover {
-        background: darken(#f9f9f9,25%);
+        border-bottom: 1px solid ;
+        
+
+        
       }
 
 
