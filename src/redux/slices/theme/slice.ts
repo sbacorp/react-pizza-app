@@ -8,7 +8,7 @@ const getTheme = () => {
 	const userMedia = window.matchMedia("(prefers-color-scheme: light)");
 	if (userMedia.matches) return "light";
 
-	return "light";
+	return "dark";
 };
 
 const initialState = getTheme();

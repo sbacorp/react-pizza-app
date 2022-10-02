@@ -12,9 +12,7 @@ import { fetchProducts } from "../redux/slices/products/slice";
 import { FilterSelector } from "../redux/slices/filter/selectors";
 import { ProductsSelector } from "../redux/slices/products/selectors";
 
-
 export const Home: React.FC = () => {
-	const isMounted = React.useRef(false);
 	const dispatch = useAppDispatch();
 
 	const { categoryID, sort, currentPage, searchValue } =
@@ -38,11 +36,8 @@ export const Home: React.FC = () => {
 	};
 
 	React.useEffect(() => {
-		
-			window.scrollTo(0, 0);
-			getProducts();
-		
-		
+		window.scrollTo(0, 0);
+		getProducts();
 	}, [categoryID, sort.sortProp, currentPage, searchValue]);
 
 	// React.useEffect(() => {
@@ -54,7 +49,7 @@ export const Home: React.FC = () => {
 	// 	navigate(`?${queryString}`);
 	// }, [categoryID, sort.sortProp, currentPage, searchValue]);
 
-	const pizzas = items
+	const products = items
 		.filter((obj) =>
 			obj.title.toLowerCase().includes(searchValue.toLowerCase())
 		)
@@ -86,7 +81,7 @@ export const Home: React.FC = () => {
 						? [...new Array(6)].map((_, index) => (
 								<Skeleton key={index} />
 						  ))
-						: pizzas}
+						: products}
 				</div>
 			)}
 

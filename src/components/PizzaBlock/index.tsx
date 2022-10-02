@@ -9,14 +9,14 @@ const TYPES = ["тонкое", "традиционное"];
  type Props = {
 		id: string;
 		title: string;
-		price: number;
+		prices: number[];
 		types: number[];
 		sizes: number[];
 		count: number;
 		imageUrl: string;
  };
 
-function PizzaBlock({ id, title, price, types, sizes, imageUrl }:Props) {
+function PizzaBlock({ id, title, prices, types, sizes, imageUrl }:Props) {
 
 	const dispatch = useDispatch();
 
@@ -32,11 +32,11 @@ function PizzaBlock({ id, title, price, types, sizes, imageUrl }:Props) {
 		const item: CartItem = {
 			id,
 			title,
-			price,
+			price: prices[sizeActive],
 			imageUrl,
 			type: TYPES[typeActive],
 			size: SIZES[sizeActive],
-			count:1
+			count: 1,
 		};
 		dispatch(addItem(item));
 	};
@@ -71,7 +71,7 @@ function PizzaBlock({ id, title, price, types, sizes, imageUrl }:Props) {
 				</ul>
 			</div>
 			<div className="pizza-block__bottom">
-				<div className="pizza-block__price">от {price} ₽</div>
+				<div className="pizza-block__price">{prices[sizeActive]} ₽</div>
 				<button
 					onClick={onAddClick}
 					className="button button--outline button--add"

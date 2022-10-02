@@ -12,7 +12,7 @@ export interface IProductSliceState {
 export type ProductItem = {
 	id: string;
 	title: string;
-	price: number;
+	prices: number[];
 	types: number[];
 	sizes: number[];
 	count: number;

@@ -8,7 +8,7 @@ export const fetchProducts = createAsyncThunk<ProductItem[], IParams>(
 	async (params) => {
 		const { currentPage, categoryID, sort, searchValue } = params;
 		const { data } = await axios.get<ProductItem[]>(
-			`https://631588185b85ba9b11e17d37.mockapi.io/items?page=${currentPage}&limit=4&${
+			`https://631588185b85ba9b11e17d37.mockapi.io/itemsEdited?page=${currentPage}&limit=4&${
 				categoryID > 0 ? `category=${categoryID}` : ""
 			}&sortBy=${sort.sortProp}&search=${searchValue}`
 		);
