@@ -5,7 +5,7 @@
     display: flex;
 
     li {
-      background-color: #f9f9f9;
+      
       padding: 13px 30px;
       border-radius: 30px;
       margin-right: 10px;
@@ -14,22 +14,21 @@
       transition: background-color 0.3s ease-in-out;
       background: $background;
       box-shadow: 0 5px 5px #02020281;
+      border-bottom: 2px solid transparent;
       color: $color;
       @include noselect();
 
       &:hover {
-        border-bottom: 1px solid ;
+        border-bottom: 2px solid $color;
         
-
+      
         
       }
 
 
       &.active {
-        background: #ffffff;
-        color: #18191a;
-        border-bottom: 1px solid #18191aaf ;
-        box-shadow: 0 5px 5px #18191a81;
+        background: $primary-color;
+        color:$primary-reverse;
       }
     }
   }

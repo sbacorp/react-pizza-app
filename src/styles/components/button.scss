@@ -2,14 +2,14 @@
 
 .button {
 	display: inline-block;
-	background-color: $color;
+	background-color: $background;
 	border-radius: 30px;
 	padding: 10px 20px;
 	min-width: 100px;
 	text-align: center;
 	cursor: pointer;
 	transition: background-color $duration ease-in-out,
-	border-color $duration ease-in-out;
+		border-color $duration ease-in-out;
 	border: 1px solid transparent;
 	@include noselect();
 
@@ -26,11 +26,18 @@
 	}
 
 	&:hover {
-		background-color: $orange;
+		background-color: $primary-color;
+		&,
+		i,
+		span,svg,
+		path{
+			color: $primary-reverse;
+		}
+
 	}
 
 	&:active {
-		background-color: $orange;
+		background-color: $hover-background;
 		transform: translateY(1px);
 	}
 
@@ -55,45 +62,45 @@
 	}
 
 	&--outline {
-		background-color: #fff;
-		border-color: $orange;
+		border-color: $color;
 		&,
 		span {
-			color: $orange;
+			color: $color;
 		}
 
 		svg {
 			path {
-				fill: $orange;
+				fill: $color;
 			}
 		}
 
 		&:hover {
-			background-color: $orange;
+			background-color: $background;
 
 			&,
 			span {
-				color: #fff;
+				color: $primary-color;
 			}
 
 			svg {
 				path {
-					fill: #fff;
+					color: $primary-reverse;
 				}
 			}
 		}
 
 		&:active {
-			background-color: $orange;
+			background-color: $background;
 		}
 	}
 
 	&__delimiter {
 		width: 1px;
 		height: 25px;
-		background-color: rgba(255, 255, 255, 0.25);
+		background-color: $primary-color;
 		margin-left: 14px;
 		margin-right: 14px;
+		
 	}
 
 	&--add {
@@ -108,8 +115,8 @@
 
 		&:hover {
 			i {
-				background-color: #fff;
-				color: $orange;
+				background-color: $background;
+				color: $color;
 			}
 		}
 
@@ -117,7 +124,7 @@
 			display: inline-block;
 			border-radius: 30px;
 			background-color: $color;
-			color: #fff;
+			color: $color;
 			font-weight: 600;
 			width: 22px;
 			height: 22px;
@@ -147,5 +154,6 @@
 			font-weight: 600;
 			font-size: 16px;
 		}
+		
 	}
 }
