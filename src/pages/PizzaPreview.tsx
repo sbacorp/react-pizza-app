@@ -40,8 +40,9 @@ const PizzaPreview: React.FC = () => {
 					<img src={pizza.imageUrl} alt="фото пиццы" />
 				</div>
 				<div className="pizzaPreview__desc">
+					<h2> Состав : </h2>
 					<p>
-						<h2> Состав : </h2>
+						
 						Lorem, ipsum dolor sit amet consectetur adipisicing
 						elit. Adipisci dolorum laudantium nemo explicabo odit
 						est! Inventore ducimus nisi labore, recusandae

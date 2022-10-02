@@ -1,28 +1,37 @@
+@import '../../styles/variables.scss';
+
 .root {
   position: relative;
-  margin: 10px 0;
+  order: 1;
+ 
 }
 
 .input {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 12px 20px;
-  padding-left: 42px;
-  width: 100%;
+  border: 1px solid $primary-color;
+  padding: 10px 20px 10px 40px;
   border-radius: 10px;
-  font-size: 16px;
-
+  font-size: calcFluidFontSize(14, 18, 380, 1728);
   &:focus {
-    border: 1px solid rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(0, 0, 0, 0.541);
+  }
+
+  @media screen and (max-width: 720px ) {
+    margin: 20px 0;
   }
 }
 
+
 .icon {
+  
   width: 22px;
   height: 22px;
   opacity: 0.3;
   position: absolute;
-  left: 14px;
-  top: 12px;
+  left: 3%;
+  top: 25%;
+  @media screen and (max-width: 720px ) {
+    top: 35%
+  }
 }
 
 .clearIcon {
@@ -30,10 +39,13 @@
   height: 18px;
   opacity: 0.3;
   position: absolute;
-  right: 15px;
-  top: 15px;
+  
   cursor: pointer;
-
+  right: 3%;
+  top: 30%;
+  @media screen and (max-width: 720px ) {
+    top: 40%
+  }
   &:hover {
     opacity: 0.8;
   }

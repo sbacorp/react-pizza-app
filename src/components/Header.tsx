@@ -40,7 +40,7 @@ const Header: React.FC = ()=> {
 					<>
 						<Seach />
 						<div className="header__cart">
-							<Link className="button button--cart" to="cart">
+							<Link className="button--cart" to="cart">
 								<span>{totalPrice} ₽</span>
 								<div className="button__delimiter"></div>
 								<svg

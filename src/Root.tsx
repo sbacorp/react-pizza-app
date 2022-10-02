@@ -5,7 +5,7 @@ import {Home} from "./pages/Home";
 import Cart from "./pages/Cart";
 import NotFound from "./pages/NotFound";
 import PizzaPreview from "./pages/PizzaPreview";
-import ThemeSwitcher from "./components/Theme/ThemeSwitcher";
+import ThemeSwitcher from "./components/ThemeSwitcher/ThemeSwitcher";
 
 function Root() {
 

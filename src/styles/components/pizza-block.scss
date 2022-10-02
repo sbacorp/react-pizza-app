@@ -1,14 +1,11 @@
-@import '../variables';
+@import '../../styles/variables.scss';
 
 .pizza-block {
   width: 280px;
   text-align: center;
-  margin-bottom: 65px;
   transition: all 0.2s ease-in-out;
-
-  &:hover {
-    transform: scale(1.03);
-  }
+  margin: 0 auto 65px;
+  
 
   &-wrapper {
     align-items: center;
@@ -17,11 +14,12 @@
   }
 
   &__image {
-    width: 260px;
+    max-width: 260px;
+    margin-bottom: 5px;
   }
 
   &__title {
-    font-size: 20px;
+    font-size: calcFluidFontSize(18, 20, 380, 1920);
     font-weight: 900;
     letter-spacing: 1%;
     margin-bottom: 20px;
@@ -29,35 +27,39 @@
 
   &__selector {
     display: flex;
-    background: var(--background-color);
-    color: var(--text-color);
+    background:$background;
+    color: $color;
     border-radius: 10px;
     flex-direction: column;
     padding: 6px;
 
     ul {
       display: flex;
-      flex: 1;
+      flex: 1 1 auto;
 
       &:first-of-type {
         margin-bottom: 6px;
       }
 
       li {
+        background-color: $primary-reverse;
+        border-radius: 5px;
+        margin: 0 2px;
+        color: $color;
         padding: 8px;
         flex: 1;
         cursor: pointer;
         font-weight: 600;
-        font-size: 14px;
+        font-size: calcFluidFontSize(12, 14, 380, 1728);
         @include noselect();
+
         &.active {
-          
+          background-color: $primary-color;
           border-radius: 5px;
           cursor: auto;
-          background: #ffffff;
-          color: #18191a;
+          color: $primary-reverse;
           border-bottom: 1px solid #18191aaf ;
-          box-shadow: 0 5px 8px #18191a81;
+          box-shadow: 0 3px 1px #18191a81;
         }
       }
     }
