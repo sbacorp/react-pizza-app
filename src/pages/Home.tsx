@@ -38,11 +38,11 @@ export const Home: React.FC = () => {
 	};
 
 	React.useEffect(() => {
-		if (isMounted.current) {
+		
 			window.scrollTo(0, 0);
 			getProducts();
-		}
-		isMounted.current = true;
+		
+		
 	}, [categoryID, sort.sortProp, currentPage, searchValue]);
 
 	// React.useEffect(() => {
