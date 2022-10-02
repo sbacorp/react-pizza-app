@@ -258,10 +258,19 @@ body {
 			margin-right: 3px;
 			width: 15%;
 
-			&-minus {
+			&-minus, &-plus {
 				svg {
 					path:first-of-type {
 						display: none;
+					}
+				}
+				&:hover{
+					
+						border-color: $gray-line;
+					background-color: $primary-color;
+					svg { path {
+						fill: $primary-reverse;
+					}
 					}
 				}
 
@@ -333,9 +342,10 @@ body {
 				&:active {
 					border-color: $gray-line;
 					background-color: $primary-color;
-					svg > path {
-						color: $primary-reverse;
+					svg { path {
+						fill: $primary-reverse;
 					}
+				}
 				}
 			}
 		}
