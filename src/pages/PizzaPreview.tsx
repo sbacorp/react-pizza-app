@@ -5,21 +5,21 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 export interface IPizzaProps {
 	title: string;
 	imageUrl: string;
-	price: string;
+	prices: number[];
 }
 const PizzaPreview: React.FC = () => {
 	const { id } = useParams();
-	const [pizza, setPizza] = React.useState<IPizzaProps>(
-        
-    );
+	const [pizza, setPizza] = React.useState<IPizzaProps>();
 	const navigate = useNavigate();
 
 	React.useEffect(() => {
 		async function fetchData() {
 			try {
 				const { data } = await axios.get(
-					"https://631588185b85ba9b11e17d37.mockapi.io/items/" + id
+					"https://631588185b85ba9b11e17d37.mockapi.io/itemsEdited/" +
+						id
 				);
+				console.log(data)
 				setPizza(data);
 			} catch (error) {
 				alert("ошибка, повторите снова");
@@ -51,7 +51,7 @@ const PizzaPreview: React.FC = () => {
 					</p>
 				</div>
 				<div className="pizzaPreview__price">
-					Стоимость : от {pizza.price} p
+					Стоимость : от {pizza.prices[0]} p
 				</div>
 
 				<Link to="/" className="button button--black">
