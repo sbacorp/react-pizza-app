@@ -4,6 +4,7 @@ import CartItem from "../components/CartItem";
 import CartEmpty from "../components/CartEmpty";
 import { clearItems } from "../redux/slices/cart/slice";
 import { CartSelector } from "../redux/slices/cart/selectors";
+import { CartItem as ItemType } from "../redux/slices/cart/types";
 
 export default function Cart() {
 	const dispatch = useDispatch();
@@ -98,7 +99,7 @@ export default function Cart() {
 					</div>
 				</div>
 				<div className="content__items">
-					{items.map((item: any) => (
+					{items.map((item: ItemType) => (
 						<CartItem
 							key={`${item.id} ${item.type} ${item.size}`}
 							{...item}
