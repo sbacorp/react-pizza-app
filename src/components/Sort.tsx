@@ -7,9 +7,9 @@ type PopupClick = MouseEvent & {
 	path: Node[];
 };
 export const sortsList: SortType[] = [
-	{ name: "популярности", sortProp: "rating" },
-	{ name: "цене", sortProp: "price" },
-	{ name: "алфавиту", sortProp: "title" },
+	{ name: "popularity", sortProp: "rating" },
+	{ name: "price", sortProp: "price" },
+	{ name: "alphabet", sortProp: "title" },
 ];
 function Sort() {
 	const dispath = useDispatch();
@@ -57,7 +57,7 @@ function Sort() {
 						fill="#2C2C2C"
 					/>
 				</svg>
-				<b>Сортировка по:</b>
+				<b>Sort by:</b>
 				<span>{sort.name}</span>
 			</div>
 			{popupActive && (

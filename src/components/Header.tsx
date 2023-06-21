@@ -1,13 +1,12 @@
-
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "../assets/img/pizza-logo.svg";
-import {CartSelector } from "../redux/slices/cart/selectors";
+import { CartSelector } from "../redux/slices/cart/selectors";
 import { CartItem } from "../redux/slices/cart/types";
 import Seach from "./Search";
 
-const Header: React.FC = ()=> {
+const Header: React.FC = () => {
 	const isMounted = React.useRef(false);
 	const location = useLocation();
 	const { items, totalPrice } = useSelector(CartSelector);
@@ -19,7 +18,7 @@ const Header: React.FC = ()=> {
 	React.useEffect(() => {
 		if (isMounted.current) {
 			const data = JSON.stringify(items);
-			localStorage.setItem('cart', data);
+			localStorage.setItem("cart", data);
 		}
 		isMounted.current = true;
 	}, [items]);
@@ -32,7 +31,7 @@ const Header: React.FC = ()=> {
 						<img width="38" src={Logo} alt="Pizza logo" />
 						<div>
 							<h1>React Pizza</h1>
-							<p>самая вкусная пицца во вселенной</p>
+							<p>The tastiest pizza in the universe</p>
 						</div>
 					</div>
 				</Link>
@@ -41,10 +40,10 @@ const Header: React.FC = ()=> {
 						<Seach />
 						<div className="header__cart">
 							<Link className="button--cart" to="cart">
-								<span>{totalPrice} ₽</span>
+								<span>{totalPrice} $</span>
 								<div className="button__delimiter"></div>
 								<svg
-								fill="none"
+									fill="none"
 									width="18"
 									height="18"
 									viewBox="0 0 18 18"
@@ -58,7 +57,6 @@ const Header: React.FC = ()=> {
 									/>
 									<path
 										d="M14.3333 16.3333C15.0697 16.3333 15.6667 15.7364 15.6667 15C15.6667 14.2636 15.0697 13.6667 14.3333 13.6667C13.597 13.6667 13 14.2636 13 15C13 15.7364 13.597 16.3333 14.3333 16.3333Z"
-										
 										strokeWidth="1.8"
 										strokeLinecap="round"
 										strokeLinejoin="round"
@@ -78,8 +76,6 @@ const Header: React.FC = ()=> {
 			</div>
 		</div>
 	);
-}
+};
 
 export default Header;
-
-

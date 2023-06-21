@@ -27,9 +27,7 @@ export const Home: React.FC = () => {
 	};
 	const getProducts = async () => {
 		try {
-			dispatch(
-				fetchProducts({ currentPage, categoryID, sort, searchValue })
-			);
+			dispatch(fetchProducts({ currentPage, categoryID, sort, searchValue }));
 		} catch (error) {
 			console.log(error);
 		}
@@ -64,30 +62,24 @@ export const Home: React.FC = () => {
 				/>
 				<Sort />
 			</div>
-			<h2 className="content__title">
-				{categoriesNames[categoryID]} пиццы
-			</h2>
+			<h2 className="content__title">{categoriesNames[categoryID]} pizza</h2>
 			{status === "error" ? (
 				<div className="content__error-info">
 					<h2>Произошла ошибка 😕</h2>
 					<p>
-						К сожалению, не удалось получить питсы. Попробуйте
-						повторить попытку позже.
+						К сожалению, не удалось получить питсы. Попробуйте повторить попытку
+						позже.
 					</p>
 				</div>
 			) : (
 				<div className="content__items">
 					{status === "loading"
-						? [...new Array(6)].map((_, index) => (
-								<Skeleton key={index} />
-						  ))
+						? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
 						: products}
 				</div>
 			)}
 
-			<Pagination
-				onChangePage={(number: number) => onChangePage(number)}
-			/>
+			<Pagination onChangePage={(number: number) => onChangePage(number)} />
 		</>
 	);
 };

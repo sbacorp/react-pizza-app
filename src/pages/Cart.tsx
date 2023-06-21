@@ -100,21 +100,18 @@ export default function Cart() {
 				</div>
 				<div className="content__items">
 					{items.map((item: ItemType) => (
-						<CartItem
-							key={`${item.id} ${item.type} ${item.size}`}
-							{...item}
-						/>
+						<CartItem key={`${item.id} ${item.type} ${item.size}`} {...item} />
 					))}
 				</div>
 				<div className="cart__bottom">
 					<div className="cart__bottom-details">
 						<span>
 							{" "}
-							Всего пицц: <b>{totalCount} шт.</b>{" "}
+							Total pizzas: <b>{totalCount} шт.</b>{" "}
 						</span>
 						<span>
 							{" "}
-							Сумма заказа: <b>{totalPrice} ₽</b>{" "}
+							Order amount: <b>{totalPrice} $</b>{" "}
 						</span>
 					</div>
 					<div className="cart__bottom-buttons">
@@ -138,10 +135,10 @@ export default function Cart() {
 								/>
 							</svg>
 
-							<span>Вернуться назад</span>
+							<span>Go back</span>
 						</Link>
 						<div className="button pay-btn">
-							<span>Оплатить сейчас</span>
+							<span>Pay Now</span>
 						</div>
 					</div>
 				</div>

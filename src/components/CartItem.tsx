@@ -3,13 +3,13 @@ import { addItem, minusItem, removeItem } from "../redux/slices/cart/slice";
 import { CartItem as ItemType } from "../redux/slices/cart/types";
 
 type Props = {
-	id: string,
-	title: string,
-	price: number,
-	type: string,
-	size: number,
-	count: number,
-	imageUrl: string,
+	id: string;
+	title: string;
+	price: number;
+	type: string;
+	size: number;
+	count: number;
+	imageUrl: string;
 };
 
 function CartItem({ id, title, price, type, size, count, imageUrl }: ItemType) {
@@ -38,11 +38,7 @@ function CartItem({ id, title, price, type, size, count, imageUrl }: ItemType) {
 	return (
 		<div className="cart__item">
 			<div className="cart__item-img">
-				<img
-					className="pizza-block__image"
-					src={imageUrl}
-					alt="Pizza"
-				/>
+				<img className="pizza-block__image" src={imageUrl} alt="Pizza" />
 			</div>
 			<div className="cart__item-info">
 				<h3>{title}</h3>
@@ -91,7 +87,7 @@ function CartItem({ id, title, price, type, size, count, imageUrl }: ItemType) {
 				</button>
 			</div>
 			<div className="cart__item-price">
-				<b>{price * count} ₽</b>
+				<b>{price * count} $</b>
 			</div>
 			<div onClick={onClickRemove} className="cart__item-remove">
 				<div className="button button--outline button--circle">

@@ -16,10 +16,9 @@ const PizzaPreview: React.FC = () => {
 		async function fetchData() {
 			try {
 				const { data } = await axios.get(
-					"https://631588185b85ba9b11e17d37.mockapi.io/itemsEdited/" +
-						id
+					"https://631588185b85ba9b11e17d37.mockapi.io/itemsEdited/" + id
 				);
-				console.log(data)
+				console.log(data);
 				setPizza(data);
 			} catch (error) {
 				alert("ошибка, повторите снова");
@@ -37,17 +36,15 @@ const PizzaPreview: React.FC = () => {
 			<div className="container">
 				<div className="pizzaPreview__title"> {pizza.title}</div>
 				<div className="pizzaPreview__image">
-					<img src={pizza.imageUrl} alt="фото пиццы" />
+					<img src={pizza.imageUrl} alt="фото pizza" />
 				</div>
 				<div className="pizzaPreview__desc">
 					<h2> Состав : </h2>
 					<p>
-						
-						Lorem, ipsum dolor sit amet consectetur adipisicing
-						elit. Adipisci dolorum laudantium nemo explicabo odit
-						est! Inventore ducimus nisi labore, recusandae
-						repellendus fuga, aliquam, ab enim doloribus optio autem
-						aspernatur consectetur?
+						Lorem, ipsum dolor sit amet consectetur adipisicing elit. Adipisci
+						dolorum laudantium nemo explicabo odit est! Inventore ducimus nisi
+						labore, recusandae repellendus fuga, aliquam, ab enim doloribus
+						optio autem aspernatur consectetur?
 					</p>
 				</div>
 				<div className="pizzaPreview__price">

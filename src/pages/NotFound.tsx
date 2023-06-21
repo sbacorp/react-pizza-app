@@ -1,4 +1,3 @@
-
 export default function NotFound() {
 	return (
 		<>
@@ -11,7 +10,7 @@ export default function NotFound() {
 				404
 			</h1>
 			<h1 style={{ textAlign: "center", fontSize: "30px" }}>
-				Данная страница не найдена
+				This page was not found
 			</h1>
 		</>
 	);

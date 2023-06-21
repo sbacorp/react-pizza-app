@@ -1,39 +1,31 @@
 import React from "react";
-import {debounce} from "lodash";
+import { debounce } from "lodash";
 import styles from "./Search.module.scss";
 import { useDispatch } from "react-redux";
-import {
-	setSearchValue
-} from "../../redux/slices/filter/slice";
-
+import { setSearchValue } from "../../redux/slices/filter/slice";
 
 function Seach() {
-
 	const inputRef = React.useRef<HTMLInputElement>(null);
-	const [value, setValue] = React.useState('')
+	const [value, setValue] = React.useState("");
 	const dispatch = useDispatch();
 	const onClickClear = () => {
-		setValue('');
-		dispatch(setSearchValue(''));
+		setValue("");
+		dispatch(setSearchValue(""));
 		inputRef.current?.focus();
-
 	};
-	
-	
+
 	const updateSearch = React.useCallback(
-		debounce((value:string) => {
+		debounce((value: string) => {
 			dispatch(setSearchValue(value));
 		}, 350),
 		[]
 	);
 
-
-	const onChangeInput =(e: React.ChangeEvent<HTMLInputElement>) =>{
-		setValue(e.target.value)
+	const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setValue(e.target.value);
 		updateSearch(e.target.value);
-	}
+	};
 	return (
-		
 		<div className={styles.root}>
 			<svg
 				className={styles.icon}
@@ -72,9 +64,9 @@ function Seach() {
 			<input
 				ref={inputRef}
 				value={value}
-				onChange={(e)=>onChangeInput(e)}
+				onChange={(e) => onChangeInput(e)}
 				className={styles.input}
-				placeholder="Поиск пиццы..."
+				placeholder="searchpizza..."
 			/>
 			{value && (
 				<svg

@@ -1,12 +1,12 @@
 import React from "react";
 
 	export const categoriesNames = [
-		"Все",
-		"Мясные",
-		"Вегетарианские",
-		"Гриль",
-		"Острые",
-		"Закрытые",
+		"All",
+		"Meat",
+		"Vegetarian",
+		"Grill",
+		"Sharp",
+		"Unavailable",
 	];
 
 type Props = {
