@@ -52,7 +52,7 @@ const PizzaPreview: React.FC = () => {
 				</div>
 
 				<Link to="/" className="button button--black">
-					<span>Вернуться назад</span>
+					<span>go back</span>
 				</Link>
 			</div>
 		</div>

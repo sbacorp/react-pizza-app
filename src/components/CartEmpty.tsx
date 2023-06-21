@@ -15,7 +15,7 @@ export default function CartEmpty() {
 				</p>
 				<img src={empty} alt="Empty cart" />
 				<Link to="/" className="button button--black">
-					<span>Вернуться назад</span>
+					<span>go back</span>
 				</Link>
 			</div>
 		</>
